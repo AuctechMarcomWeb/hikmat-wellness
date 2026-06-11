@@ -1,0 +1,181 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #0B5D4B;
+    --primary-light: #1a8a6e;
+    --secondary: #D4AF37;
+    --accent: #F8F5F0;
+    --text: #1A1A1A;
+    --text-muted: #6B7280;
+    --background: #FFFFFF;
+    --border: #E5E7EB;
+    --radius: 0.75rem;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased text-foreground bg-background;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-md border border-white/10;
+  }
+
+  /* Premium card */
+  .card-luxury {
+    @apply bg-white rounded-2xl shadow-card transition-shadow duration-300 hover:shadow-card-hover;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #0B5D4B, #D4AF37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Premium button */
+  .btn-primary {
+    @apply bg-primary-500 text-white px-6 py-3 rounded-xl font-semibold 
+           transition-all duration-300 hover:bg-primary-600 hover:shadow-luxury-lg 
+           active:scale-95 focus-visible:outline-none focus-visible:ring-2 
+           focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-primary-500 text-primary-500 px-6 py-3 rounded-xl font-semibold 
+           transition-all duration-300 hover:bg-primary-50 active:scale-95
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500;
+  }
+
+  .btn-gold {
+    @apply bg-secondary text-white px-6 py-3 rounded-xl font-semibold 
+           transition-all duration-300 hover:bg-secondary-600 hover:shadow-gold 
+           active:scale-95;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-16 lg:py-24;
+  }
+
+  .section-sm {
+    @apply py-10 lg:py-16;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+    @apply rounded;
+  }
+
+  /* Trust badge */
+  .trust-badge {
+    @apply flex items-center gap-2 text-sm font-medium text-gray-600;
+  }
+
+  /* Product badge */
+  .product-badge {
+    @apply absolute top-3 left-3 px-2 py-1 text-xs font-bold rounded-full;
+  }
+
+  /* Rating stars */
+  .star-filled {
+    @apply text-secondary fill-secondary;
+  }
+
+  .star-empty {
+    @apply text-gray-300;
+  }
+}
+
+@layer utilities {
+  /* Scroll snap */
+  .snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+  }
+
+  .snap-start {
+    scroll-snap-align: start;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary-300 rounded-full;
+  }
+
+  /* No scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Embla Carousel */
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
